@@ -28,11 +28,11 @@ class ConcreteFactory1(AbstractFactory):
     product, while inside the method a concrete product is instantiated.
     """
 
-    #def create_product_a(self) -> ConcreteProductA1:
-    #    return ConcreteProductA1()
+    def create_product_a(self) -> ConcreteProductA1:
+        return ConcreteProductA1()
 
-    #def create_product_b(self) -> ConcreteProductB1:
-    #    return ConcreteProductB1()
+    def create_product_b(self) -> ConcreteProductB1:
+        return ConcreteProductB1()
 
 
 class ConcreteFactory2(AbstractFactory):
