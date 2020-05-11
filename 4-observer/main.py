@@ -23,23 +23,64 @@ class Observer:
     pass
 
 class WebsiteSubject(BaseSubject):
+    _observers = []
+    _post = ""
+    def setData(self, sPost):
+      self._post = sPost
+      self.notifyObservers()
+
+    def registerObserver(self, observer):
+      self._observers.append(observer)
+
+    def removeObserver(self):
+      pass
+  
+    def notifyObservers(self):
+      pass
+
+class UserInterface(Observer):
+  def update(self, sPost):
     pass
 
-class UserInterface(BaseSubject):
-  pass
+class Logger(Observer):
+  _post = ""
+  _subject = None
 
-class Logger(BaseSubject):
-  def registerObserver(self):
-    print("Entry::registerObserver")
-    pass
+  def __init__(self):
+    super().__init__()
+
+  def __init__(self, subject):
+    super().__init__()
+    _subject = subject
+
+  def log(self, sPost):
+      print("Logger : New post " + sPost)
+
+  def update(self, sPost):
+    self._post = sPost
+    log(sPost)
 
 
 if __name__ == "__main__":
     print("App: ObserverPattern")
     print("\n")
     print("Logger")
-    Logger()
-    print("WebsiteSubject")
-    WebsiteSubject()
-    print("UserInterface")
-    UserInterface()
+    print("\n")
+    
+    subject = WebsiteSubject()
+    logger  = Logger(subject)
+    subject.registerObserver(logger)
+    subject.setData("Post 1")
+
+    
+    # 1. adicionar outros métodos abstrados 
+    #    de referencia ao observer
+    #    implementar os @abstractmethod
+
+    # print("WebsiteSubject")
+    # print("\n")
+    # WebsiteSubject()
+
+    # print("UserInterface")
+    # print("\n")
+    # UserInterface()
