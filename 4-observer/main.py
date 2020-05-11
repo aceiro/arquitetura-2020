@@ -29,9 +29,17 @@ class UserInterface(BaseSubject):
   pass
 
 class Logger(BaseSubject):
-  pass
+  def registerObserver(self):
+    print("Entry::registerObserver")
+    pass
 
 
 if __name__ == "__main__":
     print("App: ObserverPattern")
     print("\n")
+    print("Logger")
+    Logger()
+    print("WebsiteSubject")
+    WebsiteSubject()
+    print("UserInterface")
+    UserInterface()
