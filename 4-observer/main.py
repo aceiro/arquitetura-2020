@@ -19,7 +19,7 @@ class BaseSubject(ABC):
 class Observer:
 
   @abstractmethod
-  def update(self, sPost):
+  def update(self, sPost = ""):
     pass
 
 class WebsiteSubject(BaseSubject):
@@ -32,13 +32,15 @@ class WebsiteSubject(BaseSubject):
     def registerObserver(self, observer):
       self._observers.append(observer)
 
-    def removeObserver(self):
-      pass
+    def removeObserver(self, observer):
+      self._observers.remove(observer)
   
     def notifyObservers(self):
-      pass
+      for observer in self._observers:
+        observer.update(self._post)
 
 class UserInterface(Observer):
+  #2. adicionar as outras implementações para o UserInterface
   def update(self, sPost):
     pass
 
@@ -58,7 +60,7 @@ class Logger(Observer):
 
   def update(self, sPost):
     self._post = sPost
-    log(sPost)
+    self.log(self._post)
 
 
 if __name__ == "__main__":
