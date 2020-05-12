@@ -2,6 +2,14 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+# Esse código é baseado no modelo do exemplo do seguinte link
+# https://android.jlelse.eu/observer-pattern-how-does-it-work-82dfd81305a4
+#  
+# Desafio - Converter o código Java para Python do Logger e UserInterface observer
+# 
+
+# BaseSubject: é uma interface que define os métodos que serão usados 
+#              para adicionar, remover e notificar os observers
 class BaseSubject(ABC):
   @abstractmethod
   def registerObserver(self):
@@ -16,6 +24,9 @@ class BaseSubject(ABC):
     pass
 
 
+# Observer: são as classes que recebem uma string (post)
+#           e atualizam o conteúdo em tela ou em log do usuario
+#           por exemplo, o Logger é um Observer
 class Observer:
 
   @abstractmethod
@@ -44,6 +55,7 @@ class UserInterface(Observer):
   def update(self, sPost):
     pass
 
+# Logger: É um observer que implementa o método update()
 class Logger(Observer):
   _post = ""
   _subject = None
